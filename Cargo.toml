@@ -1,0 +1,13 @@
+[workspace]
+members = [
+    "example_plugin",
+    "pnp_sys",
+    "pnp_lib",
+]
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+lto = true
+panic = "abort"

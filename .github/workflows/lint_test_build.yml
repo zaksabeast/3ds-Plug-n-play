@@ -1,0 +1,77 @@
+name: Lint, Test, Build
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  launcher:
+    name: launcher
+    runs-on: ubuntu-latest
+    container: zaksabeast/devkitarm-rust
+    defaults:
+      run:
+        working-directory: ./launcher
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build
+        run: make
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: launcher
+          retention-days: 5
+          path: ./launcher/out/pnp_launcher.cia
+
+  pnp_lib:
+    name: pnp_lib
+    runs-on: ubuntu-latest
+    container: zaksabeast/devkitarm-rust
+    defaults:
+      run:
+        working-directory: ./pnp_lib
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Lint
+        run: cargo clippy
+
+      - name: Test
+        run: cargo test --features test_stubs
+
+  pnp_sys:
+    name: pnp_sys
+    runs-on: ubuntu-latest
+    container: zaksabeast/devkitarm-rust
+    defaults:
+      run:
+        working-directory: ./pnp_sys
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Lint
+        run: make lint
+
+      - name: Test
+        run: make test
+
+      - name: Build
+        run: make release
+
+      - name: Build Mode3
+        run: touch src/main.rs && MODE3=1 make release
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: pnp_sys
+          retention-days: 5
+          path: |
+            ./pnp_sys/out/release/pnp_sys.cia
+            ./pnp_sys/out/release/pnp_sys_mode3.cia

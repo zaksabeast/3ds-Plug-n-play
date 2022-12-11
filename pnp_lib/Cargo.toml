@@ -1,0 +1,14 @@
+[package]
+name = "pnp"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+no_std_io = { git = "https://github.com/zaksabeast/no_std_io.git", rev = "4bc5adf" }
+num_enum = { version = "0.5", default-features = false }
+
+[features]
+# cfg(doctest) doesn't appear to have worked for a while now, and there's a lot of confusion around it.
+# This is a (hopefully temporary) workaround.
+# cargo test --features test_stubs
+test_stubs = []

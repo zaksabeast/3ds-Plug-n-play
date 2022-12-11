@@ -1,0 +1,11 @@
+[package]
+name = "example_plugin"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+no_std_io = { git = "https://github.com/zaksabeast/no_std_io.git", rev = "4bc5adf" }
+pnp = { path = "../pnp_lib" }
+
+[lib]
+crate-type = ["cdylib", "staticlib"]
