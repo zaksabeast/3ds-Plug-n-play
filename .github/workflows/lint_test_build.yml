@@ -73,5 +73,5 @@ jobs:
           name: pnp_sys
           retention-days: 5
           path: |
-            ./pnp_sys/out/release/pnp_sys.cia
-            ./pnp_sys/out/release/pnp_sys_mode3.cia
+            ./pnp_sys/out/release/0004013000CB9702.cxi
+            ./pnp_sys/out/release/0004013000CB9802.cxi

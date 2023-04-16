@@ -1,6 +1,6 @@
 # Plug-n-play
 
-Plug-n-play (pronounced 'plugin play') is a 3ds sysmodule that runs webassembly plugins.
+Plug-n-play (pronounced 'plugin play' or 'plug and play') is a 3ds sysmodule that runs webassembly plugins.
 
 Plugins can display in-game info that otherwise couldn't be seen and add additional functionality via patches and cheats.
 
@@ -8,9 +8,13 @@ If you'd like to create a simple cheat plugin, it's probably best to use Luma's 
 
 ## Installing and running
 
-1. Download the release
-1. Copy the contents of the zip to your console's sd card
-1. Install `pnp_sys.cia` and `pnp_launcher.cia` (Do not install `pnp_sys_mode3.cia` on n3ds)
+Luma 12.0.0+ is required with "Enable loading external FIRMs and modules" option enabled.
+
+1. Download and unzip the latest release
+1. Install `pnp_launcher.cia` to your console
+1. Copy the cxi files to `sd:/luma/sysmodules/`
+   - n3ds should only copy `0004013000CB9702.cxi`
+   - o3ds should copy both cxi files
 1. Run the pnp launcher from the home menu
 1. Start a game and have fun
 
@@ -32,8 +36,6 @@ If you'd like to contribute a better icon or home menu sound, please open an iss
 1. Run `make` to test, lint, and build
 
 ## Developing the sysmodule
-
-Rather than installing the cia after every change, you might find it more convenient to copy the files at `out/<build>/0004013000CB9702` to `/luma/titles/0004013000CB9702` on your 3ds. Luma will load those when the sysmodule is launched.
 
 If luma's crash screen is enabled, panics will show the last four characters of the causing file in r9 and the line that caused the panic in r10. While this hides two register's values, it does provide pretty quick insight into a problem area.
 

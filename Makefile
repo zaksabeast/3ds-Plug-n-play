@@ -22,7 +22,7 @@ release:
 	@make -C launcher
 	@cargo build --release --manifest-path example_plugin/Cargo.toml --target wasm32-unknown-unknown
 	@mkdir -p out/pnp
-	@cp pnp_sys/out/release/pnp_sys.cia out/.
-	@cp pnp_sys/out/release/pnp_sys_mode3.cia out/.
+	@cp pnp_sys/out/release/0004013000CB9702.cxi out/.
+	@cp pnp_sys/out/release/0004013000CB9802.cxi out/.
 	@cp launcher/out/pnp_launcher.cia out/.
 	@cp target/wasm32-unknown-unknown/release/example_plugin.wasm out/pnp/.
