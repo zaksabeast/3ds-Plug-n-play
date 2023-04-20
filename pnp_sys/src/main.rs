@@ -67,8 +67,8 @@ impl ServiceRouter for PnpSysmodule {
     fn close_session(&mut self, _session_index: usize) {}
 }
 
-#[cfg_attr(feature = "large_mem", ctr::ctr_start(heap_byte_size = 0x800000))]
-#[cfg_attr(not(feature = "large_mem"), ctr::ctr_start(heap_byte_size = 0x550000))]
+#[cfg_attr(feature = "mode3", ctr::ctr_start(heap_byte_size = 0x580000))]
+#[cfg_attr(not(feature = "mode3"), ctr::ctr_start(heap_byte_size = 0x800000))]
 fn main() {
     mappable_init(0x10000000, 0x14000000);
 

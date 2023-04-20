@@ -7,7 +7,7 @@ PRODUCT_CODE = pnp
 CARGO_BUILD_FLAGS = -Z build-std=core,alloc --target armv6k-nintendo-3ds
 
 ifdef MODE3
-	CARGO_BUILD_FLAGS	+= --no-default-features
+	CARGO_BUILD_FLAGS	+= --features mode3
 	TITLE_ID	= 0004013000CB9802
 	UNIQUE_ID	= 0xCB98
 	PRODUCT_CODE	= pnp_m3

@@ -47,6 +47,7 @@ impl Wasm {
         let host_set_print_x = Func::wrap(&mut store, host_api::host_set_print_x);
         let host_set_print_y = Func::wrap(&mut store, host_api::host_set_print_y);
         let host_get_game_title_id = Func::wrap(&mut store, host_api::host_get_game_title_id);
+        let host_get_is_mode3 = Func::wrap(&mut store, host_api::host_get_is_mode3);
 
         let mut linker = <Linker<HostState>>::new();
         linker.define("env", "host_print", host_print)?;
@@ -60,6 +61,7 @@ impl Wasm {
         linker.define("env", "host_set_print_x", host_set_print_x)?;
         linker.define("env", "host_set_print_y", host_set_print_y)?;
         linker.define("env", "host_get_game_title_id", host_get_game_title_id)?;
+        linker.define("env", "host_get_is_mode3", host_get_is_mode3)?;
 
         let instance = linker.instantiate(&mut store, &module)?.start(&mut store)?;
         let run_frame = instance

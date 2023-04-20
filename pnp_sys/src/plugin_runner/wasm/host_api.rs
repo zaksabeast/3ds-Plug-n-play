@@ -20,6 +20,18 @@ fn get_caller_memory(caller: &mut Caller<'_, HostState>) -> Memory {
 }
 
 #[inline(always)]
+#[cfg(feature = "mode3")]
+pub fn host_get_is_mode3() -> u32 {
+    1
+}
+
+#[inline(always)]
+#[cfg(not(feature = "mode3"))]
+pub fn host_get_is_mode3() -> u32 {
+    0
+}
+
+#[inline(always)]
 pub fn host_set_print_colors(
     mut caller: Caller<'_, HostState>,
     text_color: u32,

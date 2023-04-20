@@ -57,8 +57,8 @@ impl PluginRunner {
     pub fn run_frame(&mut self, screen: Screen) -> CtrResult {
         hid::Global::scan_input();
 
-        // Only large_mem can switch plugins
-        #[cfg(feature = "large_mem")]
+        // mode3 cannot switch plugins
+        #[cfg(not(feature = "mode3"))]
         if hid::Global::is_just_pressed(hid::Button::Start | hid::Button::Ddown) {
             self.show_plugin_menu = !self.show_plugin_menu;
         }

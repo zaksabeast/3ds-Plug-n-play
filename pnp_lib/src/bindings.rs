@@ -10,6 +10,7 @@ extern "C" {
     pub fn host_set_print_x(x: u32);
     pub fn host_set_print_y(y: u32);
     pub fn host_get_game_title_id() -> u64;
+    pub fn host_get_is_mode3() -> u32;
 }
 
 #[cfg(feature = "test_stubs")]
@@ -40,6 +41,10 @@ pub mod test_stubs {
     pub extern "C" fn host_set_print_y(_y: u32) {}
     #[no_mangle]
     pub extern "C" fn host_get_game_title_id() -> u64 {
+        0
+    }
+    #[no_mangle]
+    pub extern "C" fn host_get_is_mode3() -> u32 {
         0
     }
 }

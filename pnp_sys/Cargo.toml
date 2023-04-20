@@ -13,5 +13,5 @@ num_enum = { version = "0.5", default-features = false }
 wasmi = { version = "0.19", default-features = false }
 
 [features]
-default = ["large_mem"]
-large_mem = []
+default = []
+mode3 = []
