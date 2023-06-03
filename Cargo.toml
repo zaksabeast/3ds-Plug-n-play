@@ -11,3 +11,4 @@ panic = "abort"
 [profile.release]
 lto = true
 panic = "abort"
+opt-level = "s"
