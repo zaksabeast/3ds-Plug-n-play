@@ -1,4 +1,5 @@
 use super::hook;
+use crate::{hook::get_running_title_id, memory::GameMemRegion};
 use ctr::{
     ptm_sysm,
     res::CtrResult,
@@ -6,10 +7,27 @@ use ctr::{
     sysmodule::notification::{NotificationHandlerResult, NotificationManager},
 };
 
+// Arbitrary limit to prevent an infinite loop
+const MAX_ATTEMPTS: usize = 100000;
+
 pub fn handle_launch_title_notification(_notification_id: u32) -> CtrResult {
-    // Delay slightly so the game has time to load before patching.
-    // In the future this should be replaced with reading the game's memory.
-    svc::sleep_thread(1000000000);
+    let mut title_id = 0;
+
+    // Wait until title id is accessible
+    for _ in 0..MAX_ATTEMPTS {
+        if let Ok(running_title_id) = get_running_title_id() {
+            title_id = running_title_id;
+            break;
+        }
+    }
+
+    // Wait until game memory is accessible
+    for _ in 0..MAX_ATTEMPTS {
+        if GameMemRegion::new_heap(title_id).is_ok() {
+            break;
+        }
+    }
+
     hook::install_hook();
     Ok(())
 }

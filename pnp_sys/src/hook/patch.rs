@@ -124,7 +124,7 @@ pub fn is_new_game_launch() -> bool {
 pub fn install_hook() {
     let patch_result = patch_running_title();
 
-    // Don't forwrad the error if one exists
+    // Don't forward the error if one exists
     if let Err(result_code) = patch_result {
         log::error(&alloc::format!(
             "Failed to hook title {:x}",
