@@ -5,8 +5,8 @@ on:
     branches: [main]
 
 jobs:
-  draft-release:
-    name: Draft release
+  canary-release:
+    name: Canary release
     runs-on: ubuntu-latest
     container: zaksabeast/devkitarm-rust
     steps:
