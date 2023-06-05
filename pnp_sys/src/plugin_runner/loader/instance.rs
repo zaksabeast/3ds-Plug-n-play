@@ -8,6 +8,7 @@ use alloc::{
 use ctr::{hid, hid::InterfaceDevice, res::CtrResult};
 
 const VERSION: &str = env!("CARGO_PKG_VERSION");
+const GIT_HASH: &str = env!("GIT_HASH");
 
 pub struct PluginLoaderMenu {
     print_settings: TextPrinter,
@@ -37,7 +38,8 @@ impl PluginLoaderMenu {
             self.menu.cursor_up()
         }
 
-        self.print_buffer.push(format!("Plugin Menu ({})", VERSION));
+        self.print_buffer
+            .push(format!("Plugin Menu {} {}", VERSION, GIT_HASH));
         self.print_buffer.push("".to_string());
         self.menu.push_menu_to_buffer(&mut self.print_buffer);
 
