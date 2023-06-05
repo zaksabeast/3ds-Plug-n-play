@@ -1,12 +1,12 @@
 use super::context::PnpServiceContext;
 use ctr::{hid, hid::InterfaceDevice, svc};
 
-pub fn handle_frame_pause(context: &mut PnpServiceContext, is_top_screen: bool) {
+pub fn handle_frame_pause(context: &mut PnpServiceContext, is_bottom_screen: bool) {
     if hid::Global::is_just_pressed(hid::Button::Start | hid::Button::Select) {
         context.is_paused = true;
     }
 
-    while context.is_paused && is_top_screen {
+    while context.is_paused && is_bottom_screen {
         hid::Global::scan_input();
 
         let just_down = hid::Global::just_down_buttons();

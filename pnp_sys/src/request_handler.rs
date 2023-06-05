@@ -58,7 +58,7 @@ fn run_game_hook(
         }
     }
 
-    handle_frame_pause(&mut server.context, is_top_screen);
+    handle_frame_pause(&mut server.context, !is_top_screen);
 
     Ok(())
 }
