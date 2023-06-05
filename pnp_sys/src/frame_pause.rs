@@ -6,6 +6,8 @@ pub fn handle_frame_pause(context: &mut PnpServiceContext, is_bottom_screen: boo
         context.is_paused = true;
     }
 
+    // Handle inputs on bottom screen since that seems to be rendered first.
+    // This will prevent memory from changing too much in between pnp renders.
     while context.is_paused && is_bottom_screen {
         hid::Global::scan_input();
 
