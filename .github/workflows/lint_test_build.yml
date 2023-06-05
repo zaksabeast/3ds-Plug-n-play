@@ -2,8 +2,6 @@ name: Lint, Test, Build
 
 on:
   pull_request:
-  push:
-    branches: [main]
 
 jobs:
   launcher:

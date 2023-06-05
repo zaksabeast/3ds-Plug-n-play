@@ -1,7 +1,8 @@
 name: Draft release
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [main]
 
 jobs:
   draft-release:
@@ -23,8 +24,20 @@ jobs:
       - name: Zip artifacts
         run: cd out && zip -r ../pnp.zip .
 
+      - name: "Set build timestamp"
+        run: echo "build_timestamp=$(date +'%Y-%m-%d %H:%M')" >> $GITHUB_OUTPUT
+        id: build_timestamp
+
+      - name: "Set tag name"
+        run: echo "tag_name=canary-$(date +'%Y-%m-%d-%H-%M')" >> $GITHUB_OUTPUT
+        id: tag_name
+
       - name: Create release
         uses: softprops/action-gh-release@v1
         with:
-          draft: true
+          draft: false
+          prerelease: true
+          tag_name: ${{ steps.tag_name.outputs.tag_name }}
+          name: ${{ format('Canary {0}', steps.build_timestamp.outputs.build_timestamp) }}
+          body: ${{ github.event.head_commit.message }}
           files: pnp.zip
