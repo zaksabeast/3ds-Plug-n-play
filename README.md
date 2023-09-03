@@ -22,6 +22,22 @@ The first plugin will run automatically. Press "start + down" to see the plugin 
 
 Plugins for all games are loaded from `/pnp/<file>.wasm`. Plugins for specific games are loaded from `/pnp/<title_id>/<file>.wasm`.
 
+## Uninstalling
+
+n3ds + o3ds:
+
+- Delete `/luma/sysmodules/0004013000CB9702.cxi`
+- Use FBI to uninstall pnp launcher (0004010000CB9700)
+
+o3ds should also:
+
+- Delete `/luma/sysmodules/0004013000CB9802.cxi`
+- Remove the gen 7 mode 3 patch `/luma/titles/<gen 7 title id>/exheader.bin` if it exists
+
+If you used pnp before the cxi change, uninstall the pnp sysmodule and pnp mode 3 sysmodule 0004013000CB9702 and 0004013000CB9802 too.
+
+Be careful not to uninstall the wrong thing!
+
 ## Mode 3
 
 2ds/o3ds support for extended memory games is supported, but launching the plugin isn't an ideal experience yet, so a launch method isn't included in the releases. Please open an issue if you'd like to help improve this.
